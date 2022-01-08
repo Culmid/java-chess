@@ -18,35 +18,28 @@ public class Board {
 
         // Rooks
         wPieces[count] = new Rook(0, 0);
-        bPieces[count] = new Rook(0, 7);
-        count++;
+        bPieces[count++] = new Rook(0, 7);
         
         wPieces[count] = new Rook(7, 0);
-        bPieces[count] = new Rook(7, 7);
-        count++;
+        bPieces[count++] = new Rook(7, 7);
 
         // Knights
         wPieces[count] = new Knight(1, 0);
-        bPieces[count] = new Knight(1, 7);
-        count++;
+        bPieces[count++] = new Knight(1, 7);
         
         wPieces[count] = new Knight(6, 0);
-        bPieces[count] = new Knight(6, 7);
-        count++;
+        bPieces[count++] = new Knight(6, 7);
 
         // Bishops
         wPieces[count] = new Bishop(2, 0);
-        bPieces[count] = new Bishop(2, 7);
-        count++;
+        bPieces[count++] = new Bishop(2, 7);
 
         wPieces[count] = new Bishop(5, 0);
-        bPieces[count] = new Bishop(5, 7);
-        count++;
+        bPieces[count++] = new Bishop(5, 7);
 
         // Queens
         wPieces[count] = new Queen(3, 0);
-        bPieces[count] = new Queen(4, 7);
-        count++;
+        bPieces[count++] = new Queen(4, 7);
 
         // Kings
         wPieces[count] = new King(4, 0);
@@ -87,6 +80,23 @@ public class Board {
             out += brd[i];
         }
 
-        return out;
+        return out.strip();
+    }
+
+
+    public Piece getPiece(int c, int x, int y) {
+        Piece[] pieces = wPieces;
+        
+        if (c == 1) {
+            pieces = bPieces;
+        } 
+
+        for (int i = 0; i < 16; i++) {
+            if (pieces[i].getX() == x && pieces[i].getY() == y) {
+                return pieces[i];
+            }
+        }
+
+        return null;
     }
 }
