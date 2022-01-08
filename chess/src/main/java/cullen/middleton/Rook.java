@@ -1,3 +1,5 @@
+package cullen.middleton;
+
 public class Rook extends Piece {
 
     public Rook(int x, int y) {
@@ -6,5 +8,9 @@ public class Rook extends Piece {
     
     public int[] legalMoves() {
         return null;
+    }
+
+    public String toString() {
+        return "r";
     }
 }

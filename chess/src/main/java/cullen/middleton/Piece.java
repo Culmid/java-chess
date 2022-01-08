@@ -1,3 +1,5 @@
+package cullen.middleton;
+
 public abstract class Piece {
     private int posx, posy;
     
@@ -25,4 +27,14 @@ public abstract class Piece {
 
         return false;
     }
+
+    public int getX() {
+        return posx;
+    }
+
+    public int getY() {
+        return posy;
+    }
+
+    public abstract String toString();
 }
