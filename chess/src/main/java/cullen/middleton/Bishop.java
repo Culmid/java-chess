@@ -17,19 +17,83 @@ public class Bishop extends Piece {
         int count = 0;
 
         while (potx < 8 && poty < 8) {
-            // if (brd.getPiece(c, x, y)) {
+            Piece p = brd.getPiece(potx, poty);
 
-            // }
+            if (p != null && p.getC() == c) {
+                break;
+            }
+
             lm[count++] = potx++;
             lm[count++] = poty++;
+
+            if (p != null) {
+                break;
+            }
         }
 
-        System.out.println(Arrays.toString(lm));
+        // Bottom-Left Diag
+        potx = x - 1;
+        poty = y - 1;
+
+        while (potx > -1 && poty > -1) {
+            Piece p = brd.getPiece(potx, poty);
+
+            if (p != null && p.getC() == c) {
+                break;
+            }
+
+            lm[count++] = potx--;
+            lm[count++] = poty--;
+
+            if (p != null) {
+                break;
+            }
+        }
+
+        // Top-Left Diag
+        potx = x - 1;
+        poty = y + 1;
+
+        while (potx > -1 && poty < 8) {
+            Piece p = brd.getPiece(potx, poty);
+
+            if (p != null && p.getC() == c) {
+                break;
+            }
+
+            lm[count++] = potx--;
+            lm[count++] = poty++;
+
+            if (p != null) {
+                break;
+            }
+        }
+
+        // Bottom-Right Diag
+        potx = x + 1;
+        poty = y - 1;
+
+        while (potx < 8 && poty > -1) {
+            Piece p = brd.getPiece(potx, poty);
+
+            if (p != null && p.getC() == c) {
+                break;
+            }
+
+            lm[count++] = potx++;
+            lm[count++] = poty--;
+
+            if (p != null) {
+                break;
+            }
+        }
+
+        // System.out.println(Arrays.toString(lm));
 
         return lm;
     }
 
     public String toString() {
-        return "b";
+        return c == 0 ? "\u2657" : "\u265D";
     }
 }

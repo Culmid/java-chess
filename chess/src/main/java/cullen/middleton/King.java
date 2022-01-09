@@ -11,7 +11,6 @@ public class King extends Piece {
     }
 
     public String toString() {
-        // return "\u2654";
-        return "k";
+        return c == 0 ? "\u2654" : "\u265A";
     }
 }

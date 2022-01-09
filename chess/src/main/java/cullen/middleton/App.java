@@ -42,7 +42,7 @@ public class App {
                                 if (p == null) {
                                     System.out.println("No Valid Piece Found");
                                 } else {
-                                    System.out.println("Moves for " + p + "(" + spl[1] + "): " + Arrays.toString(p.legalMoves(brd)));
+                                    System.out.println("Moves for " + p + " (" + spl[1] + "): " + Arrays.toString(p.legalMoves(brd)));
                                 }
                             } else {
                                 System.out.println("Invalid Square Reference Value");

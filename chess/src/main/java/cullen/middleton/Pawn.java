@@ -11,6 +11,6 @@ public class Pawn extends Piece {
     }
 
     public String toString() {
-        return "p";
+        return c == 0 ? "\u2659" : "\u265F"; 
     }
 }

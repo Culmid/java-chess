@@ -2,12 +2,12 @@ package cullen.middleton;
 
 public abstract class Piece {
     protected int x, y; // Check
-    protected int colour;
+    protected int c;
 
     public Piece(int c, int x, int y) {
         this.x = x;
         this.y = y;
-        this.colour = c;
+        this.c = c;
     }
 
     abstract int[] legalMoves(Board brd);
@@ -37,8 +37,8 @@ public abstract class Piece {
         return y;
     }
 
-    public int getColour() {
-        return colour;
+    public int getC() {
+        return c;
     }
 
     public abstract String toString();

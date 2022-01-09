@@ -11,6 +11,6 @@ public class Knight extends Piece {
     }
 
     public String toString() {
-        return "n";
+        return c == 0 ? "\u2658" : "\u265E";
     }
 }

@@ -46,28 +46,23 @@ public class Board {
     public String toString() {
         String[] brd = new String[8];
         
+        // Init Board
         for (int i = 0; i < 8; i++) {
-            brd[i] = "********\n";
+            brd[i] = "* * * * * * * *\n";
         }
 
-        // TODO: Factor Duplication Out
         // Add Pieces
         for (int i = 0; i < 32; i++) {
             if (pieces[i] != null) {
                 int x = pieces[i].getX();
                 int y = pieces[i].getY();
-                String p = pieces[i].toString();
 
-                if (pieces[i].getColour() == 1) {
-                    p = p.toUpperCase();
-                }
-                
-                brd[y] = brd[y].substring(0, x) + p + brd[y].substring(x + 1);
+                brd[y] = brd[y].substring(0, 2 * x) + pieces[i].toString() + brd[y].substring(2 * x + 1);
             }
         }
 
+        // Build String
         String out = "";
-
         for (int i = 7; i > -1; i--) {
             out += brd[i];
         }

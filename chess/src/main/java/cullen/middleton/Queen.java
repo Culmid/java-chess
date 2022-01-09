@@ -11,6 +11,6 @@ public class Queen extends Piece {
     }
 
     public String toString() {
-        return "q";
+        return c == 0 ? "\u2655" : "\u265B";
     }
 }
