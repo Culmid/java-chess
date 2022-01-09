@@ -1,7 +1,5 @@
 package cullen.middleton;
 
-import java.util.Arrays;
-
 public class Bishop extends Piece {
     
     public Bishop(int c, int x, int y) {

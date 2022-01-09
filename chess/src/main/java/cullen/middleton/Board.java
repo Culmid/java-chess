@@ -1,7 +1,5 @@
 package cullen.middleton;
 
-import java.util.Arrays;
-
 public class Board {
     private Piece[] pieces = new Piece[32];
 
