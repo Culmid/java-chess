@@ -37,12 +37,12 @@ public class App {
                             int[] tr = translateSquareRef(spl[1].toLowerCase());
 
                             if (tr[0] < 8 && tr[0] > -1 && tr[1] < 8 && tr[1] > -1) {
-                                Piece p = brd.getPiece(player, tr[0], tr[1]);
+                                Piece p = brd.getPiece(tr[0], tr[1]);
 
                                 if (p == null) {
                                     System.out.println("No Valid Piece Found");
                                 } else {
-                                    System.out.println("Moves for " + p + "(" + spl[1] + "): " + Arrays.toString(p.legalMoves()));
+                                    System.out.println("Moves for " + p + "(" + spl[1] + "): " + Arrays.toString(p.legalMoves(brd)));
                                 }
                             } else {
                                 System.out.println("Invalid Square Reference Value");

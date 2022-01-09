@@ -2,11 +2,11 @@ package cullen.middleton;
 
 public class Knight extends Piece {
 
-    public Knight(int x, int y) {
-        super(x, y);
+    public Knight(int c, int x, int y) {
+        super(c, x, y);
     }
     
-    public int[] legalMoves() {
+    public int[] legalMoves(Board brd) {
         return null;
     }
 

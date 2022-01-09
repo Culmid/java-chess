@@ -1,23 +1,24 @@
 package cullen.middleton;
 
 public abstract class Piece {
-    private int posx, posy;
-    
+    protected int x, y; // Check
+    protected int colour;
 
-    public Piece(int x, int y) {
-        posx = x;
-        posy = y;
+    public Piece(int c, int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.colour = c;
     }
 
-    abstract int[] legalMoves();
+    abstract int[] legalMoves(Board brd);
 
     public void makeMove(int x, int y) {
-        posx = x;
-        posy = y;
+        this.x = x;
+        this.y = y;
     }
 
-    public boolean isLegalMove(int x, int y) {
-        int[] lm = legalMoves();
+    public boolean isLegalMove(Board brd, int x, int y) {
+        int[] lm = legalMoves(brd);
         
         for (int i = 0; i < lm.length / 2; i += 2) {
             if (x == lm[i] && y == lm[i + 1]) {
@@ -29,11 +30,15 @@ public abstract class Piece {
     }
 
     public int getX() {
-        return posx;
+        return x;
     }
 
     public int getY() {
-        return posy;
+        return y;
+    }
+
+    public int getColour() {
+        return colour;
     }
 
     public abstract String toString();
