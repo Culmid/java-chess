@@ -7,9 +7,9 @@ public class Bishop extends Piece {
     }
     
     public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+        int[] lm = new int[50]; // Fix
 
-        // Up-Right Diag
+        // Top-Right Diag
         int potx = x + 1;
         int poty = y + 1;
         int count = 0;
@@ -85,8 +85,6 @@ public class Bishop extends Piece {
                 break;
             }
         }
-
-        // System.out.println(Arrays.toString(lm));
 
         return lm;
     }

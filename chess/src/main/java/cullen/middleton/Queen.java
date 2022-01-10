@@ -8,7 +8,7 @@ public class Queen extends Piece {
     
     // TODO: Figure Out How to Share - Rook/Bishop
     public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+        int[] lm = new int[50];
 
         // Up-Right Diag
         int potx = x + 1;

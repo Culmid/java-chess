@@ -7,7 +7,7 @@ public class Rook extends Piece {
     }
     
     public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+        int[] lm = new int[50];
         int count = 0;
 
         // Up
