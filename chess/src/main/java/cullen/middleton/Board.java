@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Board {
     private Piece[] pieces = new Piece[32];
 
-    // TODO: Add Board Flip
+    // TODO: Add Board Flip -> Display Upside Down?
     public Board() {
         // Pawns
         for (int i = 0; i < 8; i++) {
