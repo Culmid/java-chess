@@ -17,6 +17,11 @@ public class App {
 
         while (s == State.PLAYING) {
             System.out.println(brd);
+
+            if (brd.inCheck(player)) {
+                System.out.println("CHECK -> Watch Out! Your King is Under Attack!");
+            }
+
             System.out.println(player == 0 ? "W Turn": "B Turn");
 
             while (true) {

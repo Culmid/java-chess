@@ -10,7 +10,7 @@ public class BoardTest {
     public void basicToStringTest()
     {
         Board brd = new Board();
-        String expected = "♜ ♞ ♝ ♚ ♛ ♝ ♞ ♜\n" +
+        String expected = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
                           "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n" +
                           "* * * * * * * *\n" +
                           "* * * * * * * *\n" +
@@ -26,7 +26,7 @@ public class BoardTest {
     public void loadBoardTest() {
         Board brd = new Board("data/Board/standard.txt");
 
-        String expected = "♜ ♞ ♝ ♚ ♛ ♝ ♞ ♜\n" +
+        String expected = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
                           "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n" +
                           "* * * * * * * *\n" +
                           "* * * * * * * *\n" +

@@ -42,11 +42,11 @@ public class Board {
 
         // Queens
         pieces[count++] = new Queen(0, 3, 0);
-        pieces[count++] = new Queen(1, 4, 7);
+        pieces[count++] = new Queen(1, 3, 7);
 
         // Kings
         pieces[count++] = new King(0, 4, 0);
-        pieces[count++] = new King(1, 3, 7);
+        pieces[count++] = new King(1, 4, 7);
     }
 
     public Board(String filename) {
@@ -97,6 +97,22 @@ public class Board {
             if (pieces[i] != null && pieces[i].getX() == x && pieces[i].getY() == y) {
                 pieces[i] = null;
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean inCheck(int c) {
+        for (int i = 0; i < 32; i++) {
+            if (pieces[i] != null && pieces[i] instanceof King && pieces[i].getC() == c) {
+                for (int j = 0; j < 32; j++) {
+                    if (pieces[j] != null && pieces[j].getC() != c) {
+                        if (pieces[j].isLegalMove(this, pieces[i].getX(), pieces[i].getY())) {
+                            return true;
+                        }
+                    }
+                }
             }
         }
 
