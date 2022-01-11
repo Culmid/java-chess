@@ -54,11 +54,38 @@ public class App {
                         System.out.println("Incorrect Usage of /help: Try /help [SquareRef]");
                     }
                 } else {
-                    break;
                     // Move
-                }
+                    String[] spl = input.split(" ");
+                    System.out.println(Arrays.toString(spl));
 
-                
+                    if (spl.length == 2) {
+                        if (spl[1].length() == 2) {
+                            int[] tr = translateSquareRef(spl[0].toLowerCase());
+                            int[] tr1 = translateSquareRef(spl[1].toLowerCase());
+
+                            if (tr[0] < 8 && tr[0] > -1 && tr[1] < 8 && tr[1] > -1) {
+                                Piece p = brd.getPiece(tr[0], tr[1]);
+
+                                if (p == null || p.getC() != player) {
+                                    System.out.println("No Valid Piece Found at Starting Point");
+                                } else {
+                                    if (p.isLegalMove(brd, tr1[0], tr1[1])) {
+                                        p.makeMove(brd, tr1[0], tr1[1]);
+                                        break;
+                                    } else {
+                                        System.out.println("Move is NOT LEGAl for Selected Piece");
+                                    }
+                                }
+                            } else {
+                                System.out.println("Invalid Square Reference Value");
+                            }
+                        } else {
+                            System.out.println("Invalid Square Reference Format: Example A2 or a2");
+                        }
+                    } else {
+                        System.out.println("Move Expected: Example -> e4 e5");
+                    }  
+                }
             }
             
 

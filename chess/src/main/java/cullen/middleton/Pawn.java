@@ -56,6 +56,17 @@ public class Pawn extends Piece {
         return lm;
     }
 
+    public void makeMove(Board brd, int x, int y) {
+        if (Math.abs(x - this.x) == 1 && Math.abs(y - this.y) == 1 && brd.getPiece(x, y) == null) { // En Passant Removal
+            brd.removePiece(x, this.y);
+            System.out.println("Wow...En Passant...Someone Knows Chess ;)");
+        }
+
+        super.makeMove(brd, x, y);
+
+        moveCount++;
+    }
+
     public String toString() {
         return c == 0 ? "\u2659" : "\u265F"; 
     }

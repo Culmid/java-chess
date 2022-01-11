@@ -92,6 +92,17 @@ public class Board {
         return null;
     }
 
+    public boolean removePiece(int x, int y) {
+        for (int i = 0; i < 32; i++) {
+            if (pieces[i] != null && pieces[i].getX() == x && pieces[i].getY() == y) {
+                pieces[i] = null;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void exportBoard(String filename) {
         try {
             FileWriter fw = new FileWriter(filename);
