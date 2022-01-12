@@ -113,6 +113,8 @@ public class Pawn extends Piece {
                     }
                 }
 
+                sc = new Scanner(System.in); // Gives Close to Perfect Behaviour - Not Ideal
+
                 brd.replacePiece(this, p);
             }
         }
