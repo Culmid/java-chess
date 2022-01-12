@@ -29,7 +29,6 @@ public class King extends Piece {
                 Piece p = brd.getPiece(potx, poty);
 
                 if (p != null && p.getC() != c || p == null) {
-                    // TODO: Fix for Protected Pieces
                     lm.add(potx);
                     lm.add(poty);
                 }
@@ -72,6 +71,19 @@ public class King extends Piece {
         }
 
         return lm;
+    }
+
+    public void makeMove(Board brd, int x, int y) {
+        // Castling - Assume Legal and Rook in Place
+        if (x - this.x == 2) { // King Side
+            brd.getPiece(x + 1, y).makeMove(brd, this.x + 1, y);
+        }
+        if (x - this.x == -2) { // Queen Side
+            brd.getPiece(x - 2, y).makeMove(brd, this.x - 1, y);
+        }
+
+        super.makeMove(brd, x, y);
+        moveCount++;
     }
 
     public String toString() {
