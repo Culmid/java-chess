@@ -68,6 +68,11 @@ public class King extends Piece {
                 lm.add(y);
             }
         }
+
+        if (testCheck) {
+            lm = pruneMoves(brd, lm);
+        }
+
         return lm;
     }
 

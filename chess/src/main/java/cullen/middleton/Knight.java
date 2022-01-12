@@ -30,6 +30,10 @@ public class Knight extends Piece {
                 }
             }
         }
+
+        if (testCheck) {
+            lm = pruneMoves(brd, lm);
+        }
         
         return lm;
     }

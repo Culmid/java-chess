@@ -78,4 +78,16 @@ public abstract class Piece {
 
         return x == p.getX() && y == p.getY() && c == p.getC();
     }
+
+    public ArrayList<Integer> pruneMoves(Board brd, ArrayList<Integer> lm) {
+        ArrayList<Integer> lmNew = new ArrayList<Integer>();
+        for (int i = 0; i < lm.size(); i += 2) {
+            if (!brd.testMoveCheck(this, lm.get(i), lm.get(i + 1))) {
+                lmNew.add(lm.get(i));
+                lmNew.add(lm.get(i + 1));
+            }
+        }
+
+        return lmNew;
+    }
 }

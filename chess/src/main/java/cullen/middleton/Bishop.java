@@ -92,16 +92,7 @@ public class Bishop extends Piece {
         }
 
         if (testCheck) {
-            ArrayList<Integer> lmNew = new ArrayList<Integer>();
-            for (int i = 0; i < lm.size(); i += 2) {
-                if (!brd.testMoveCheck(this, lm.get(i), lm.get(i + 1))) {
-                    lmNew.add(lm.get(i));
-                    lmNew.add(lm.get(i + 1));
-                }
-                // System.out.println();
-            }
-
-            lm = lmNew;
+            lm = pruneMoves(brd, lm);
         }
 
         return lm;

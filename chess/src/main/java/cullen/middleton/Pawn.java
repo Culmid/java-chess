@@ -59,6 +59,10 @@ public class Pawn extends Piece {
                 }
             }
         }
+
+        if (testCheck) {
+            lm = pruneMoves(brd, lm);
+        }
         
         return lm;
     }
