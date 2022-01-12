@@ -14,7 +14,6 @@ public class Board {
         this((Scanner) null);
     }
 
-    // TODO: Add Board Flip -> Display Upside Down?
     public Board(Scanner sc) {
         this.sc = sc;
 
@@ -217,7 +216,6 @@ public class Board {
             fw.write(toString());
             fw.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -229,7 +227,6 @@ public class Board {
             Scanner sc = new Scanner(f);
             
             int count = 0;
-            // TODO: Catch for Incorrect Format
             for (int i = 7; i > -1; i--) {
                 String[] spl = sc.nextLine().split(" ");
 
@@ -279,7 +276,6 @@ public class Board {
 
             sc.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

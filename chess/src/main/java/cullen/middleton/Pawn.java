@@ -30,7 +30,6 @@ public class Pawn extends Piece {
                 lm.add(poty);
             }
 
-            
             for (int i = -1; i < 2; i += 2) {
                 // Normal Capture
                 p = brd.getPiece(x + i, poty); // No Check for x in Bounds
@@ -50,7 +49,7 @@ public class Pawn extends Piece {
             }
 
             // First Move, TODO: Check for something in Between
-            if (moveCount == 0) {
+            if (moveCount == 0 && brd.getPiece(x, poty) == null) {
                 poty = c == 0 ? y + 2 : y - 2;
                 p = brd.getPiece(x, poty);
                 
