@@ -1,5 +1,7 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class Queen extends Piece {
 
     public Queen(int c, int x, int y) {
@@ -7,13 +9,12 @@ public class Queen extends Piece {
     }
     
     // TODO: Figure Out How to Share - Rook/Bishop
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[50];
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Up-Right Diag
         int potx = x + 1;
         int poty = y + 1;
-        int count = 0;
 
         while (potx < 8 && poty < 8) {
             Piece p = brd.getPiece(potx, poty);
@@ -22,8 +23,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = poty++;
+            lm.add(potx++);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -41,8 +42,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = poty--;
+            lm.add(potx--);
+            lm.add(poty--);
 
             if (p != null) {
                 break;
@@ -60,8 +61,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = poty++;
+            lm.add(potx--);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -79,8 +80,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = poty--;
+            lm.add(potx++);
+            lm.add(poty--);
 
             if (p != null) {
                 break;
@@ -96,8 +97,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = x;
-            lm[count++] = poty++;
+            lm.add(x);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -113,8 +114,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = x;
-            lm[count++] = poty--;
+            lm.add(x);
+            lm.add(poty--);
 
             if (p != null) {
                 break;
@@ -130,8 +131,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = y;
+            lm.add(potx--);
+            lm.add(y);
 
             if (p != null) {
                 break;
@@ -147,8 +148,8 @@ public class Queen extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = y;
+            lm.add(potx++);
+            lm.add(y);
 
             if (p != null) {
                 break;

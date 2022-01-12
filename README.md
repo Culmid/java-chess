@@ -5,7 +5,6 @@
 
 - Maven
 - Java 11
-- JUnit 4
 
 ## Usage
 

@@ -1,5 +1,6 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -47,7 +48,7 @@ public class App {
                                 if (p == null) {
                                     System.out.println("No Valid Piece Found");
                                 } else {
-                                    System.out.println("Moves for " + p + " (" + spl[1] + "): " + Arrays.toString(p.legalMoves(brd)));
+                                    System.out.println("Moves for " + p + " (" + spl[1] + "): " + Arrays.toString(legalMovesToSR(p.legalMoves(brd))));
                                 }
                             } else {
                                 System.out.println("Invalid Square Reference Value");
@@ -105,6 +106,16 @@ public class App {
         int y = (int)sr.charAt(1) - 49;
 
         return new int[] {x, y};
+    }
+
+    private static String[] legalMovesToSR(ArrayList<Integer> lm) {
+        String[] sr = new String[lm.size() / 2]; // Assume Even
+
+        for (int i = 0; i < lm.size(); i += 2) {
+            sr[i / 2] = (char)(lm.get(i) + 97) + "" + String.valueOf(lm.get(i + 1) + 1);
+        }
+
+        return sr;
     }
 }
 

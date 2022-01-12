@@ -1,5 +1,7 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class Pawn extends Piece {
 
     int moveCount = 0;
@@ -8,18 +10,17 @@ public class Pawn extends Piece {
         super(c, x, y);
     }
     
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
         int poty = c == 0 ? y + 1 : y - 1;
-        int count = 0;
 
         if (poty < 8 && poty > 0) {
             // Normal Move
             Piece p = brd.getPiece(x, poty);
 
             if (p == null) {
-                lm[count++] = x;
-                lm[count++] = poty;
+                lm.add(x);
+                lm.add(poty);
             }
 
             
@@ -28,16 +29,16 @@ public class Pawn extends Piece {
                 p = brd.getPiece(x + i, poty); // No Check for x in Bounds
                 
                 if (p != null && p.getC() != c) {
-                    lm[count++] = x + i;
-                    lm[count++] = poty;
+                    lm.add(x + i);
+                    lm.add(poty);
                 }
 
                 // En Passant - Dodge
                 p = brd.getPiece(x + i, y);
 
                 if (p != null && p.getC() != c && p instanceof Pawn && ((Pawn)p).getMoveCount() == 1) {
-                    lm[count++] = x + i;
-                    lm[count++] = poty;
+                    lm.add(x + i);
+                    lm.add(poty);
                 }
             }
 
@@ -47,8 +48,8 @@ public class Pawn extends Piece {
                 p = brd.getPiece(x, poty);
 
                 if (poty < 8 && poty > 0 && p == null) {
-                    lm[count++] = x;
-                    lm[count++] = poty;
+                    lm.add(x);
+                    lm.add(poty);
                 }
             }
         }

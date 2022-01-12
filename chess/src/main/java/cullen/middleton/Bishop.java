@@ -1,18 +1,19 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class Bishop extends Piece {
     
     public Bishop(int c, int x, int y) {
         super(c, x, y);
     }
     
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[50]; // Fix
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Top-Right Diag
         int potx = x + 1;
         int poty = y + 1;
-        int count = 0;
 
         while (potx < 8 && poty < 8) {
             Piece p = brd.getPiece(potx, poty);
@@ -21,8 +22,8 @@ public class Bishop extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = poty++;
+            lm.add(potx++);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -40,8 +41,8 @@ public class Bishop extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = poty--;
+            lm.add(potx--);
+            lm.add(poty--);
 
             if (p != null) {
                 break;
@@ -59,8 +60,8 @@ public class Bishop extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = poty++;
+            lm.add(potx--);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -78,8 +79,8 @@ public class Bishop extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = poty--;
+            lm.add(potx++);
+            lm.add(poty--);
 
             if (p != null) {
                 break;

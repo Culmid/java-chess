@@ -1,14 +1,15 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class Rook extends Piece {
 
     public Rook(int c, int x, int y) {
         super(c, x, y);
     }
     
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[50];
-        int count = 0;
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Up
         int poty = y + 1;
@@ -19,8 +20,8 @@ public class Rook extends Piece {
                 break;
             }
 
-            lm[count++] = x;
-            lm[count++] = poty++;
+            lm.add(x);
+            lm.add(poty++);
 
             if (p != null) {
                 break;
@@ -36,8 +37,8 @@ public class Rook extends Piece {
                 break;
             }
 
-            lm[count++] = x;
-            lm[count++] = poty--;
+            lm.add(x);
+            lm.add(poty--);
 
             if (p != null) {
                 break;
@@ -53,8 +54,8 @@ public class Rook extends Piece {
                 break;
             }
 
-            lm[count++] = potx--;
-            lm[count++] = y;
+            lm.add(potx--);
+            lm.add(y);
 
             if (p != null) {
                 break;
@@ -70,8 +71,8 @@ public class Rook extends Piece {
                 break;
             }
 
-            lm[count++] = potx++;
-            lm[count++] = y;
+            lm.add(potx++);
+            lm.add(y);
 
             if (p != null) {
                 break;

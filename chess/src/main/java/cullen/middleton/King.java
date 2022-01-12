@@ -1,5 +1,7 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class King extends Piece {
 
     private boolean castled = false;
@@ -9,11 +11,10 @@ public class King extends Piece {
         super(c, x, y);
     }
     
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
 
         int[][] changes = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
-        int count = 0;
 
         for (int i = 0; i < 8; i++) {
             int potx = x + changes[i][0];
@@ -24,8 +25,8 @@ public class King extends Piece {
 
                 if (p != null && p.getC() != c || p == null) {
                     // TODO: Fix for Protected Pieces
-                    lm[count++] = potx;
-                    lm[count++] = poty;
+                    lm.add(potx);
+                    lm.add(poty);
                 }
             }
         }
@@ -42,8 +43,8 @@ public class King extends Piece {
             }
 
             if (flag && brd.getPiece(x + 3, y) instanceof Rook && brd.getPiece(x + 3, y).getC() == c) {
-                lm[count++] = x + 2;
-                lm[count++] = y;
+                lm.add(x + 2);
+                lm.add(y);
             }
 
             // Queen Side
@@ -56,8 +57,8 @@ public class King extends Piece {
             }
 
             if (flag && brd.getPiece(x - 4, y) instanceof Rook && brd.getPiece(x - 4, y).getC() == c) {
-                lm[count++] = x - 2;
-                lm[count++] = y;
+                lm.add(x - 2);
+                lm.add(y);
             }
         }
         return lm;

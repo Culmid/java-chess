@@ -1,16 +1,17 @@
 package cullen.middleton;
 
+import java.util.ArrayList;
+
 public class Knight extends Piece {
 
     public Knight(int c, int x, int y) {
         super(c, x, y);
     }
     
-    public int[] legalMoves(Board brd) {
-        int[] lm = new int[20];
+    public ArrayList<Integer> legalMoves(Board brd) {
+        ArrayList<Integer> lm = new ArrayList<Integer>();
 
         int[][] changes = {{1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}};
-        int count = 0;
 
         for (int i = 0; i < 8; i++) {
             int potx = x + changes[i][0];
@@ -20,8 +21,8 @@ public class Knight extends Piece {
                 Piece p = brd.getPiece(potx, poty);
 
                 if (p != null && p.getC() != c || p == null) {
-                    lm[count++] = potx;
-                    lm[count++] = poty;
+                    lm.add(potx);
+                    lm.add(poty);
                 }
             }
         }

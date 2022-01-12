@@ -1,6 +1,6 @@
 package cullen.middleton;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public abstract class Piece {
     protected int x, y; // Check
@@ -12,7 +12,7 @@ public abstract class Piece {
         this.c = c;
     }
 
-    abstract int[] legalMoves(Board brd);
+    abstract ArrayList<Integer> legalMoves(Board brd);
 
     public void makeMove(Board brd, int x, int y) {
         if (brd.getPiece(x, y) != null) { // Assume Correct Colour for Capture
@@ -24,10 +24,10 @@ public abstract class Piece {
     }
 
     public boolean isLegalMove(Board brd, int x, int y) {
-        int[] lm = legalMoves(brd);
+        ArrayList<Integer> lm = legalMoves(brd);
 
-        for (int i = 0; i < lm.length; i += 2) {
-            if (x == lm[i] && y == lm[i + 1]) {
+        for (int i = 0; i < lm.size(); i += 2) {
+            if (x == lm.get(i) && y == lm.get(i + 1)) {
                 return true;
             }
         }
