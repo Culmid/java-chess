@@ -10,6 +10,10 @@ public class Board {
     private Piece[] pieces = new Piece[32];
     private Scanner sc;
 
+    public Board() {
+        this((Scanner) null);
+    }
+
     // TODO: Add Board Flip -> Display Upside Down?
     public Board(Scanner sc) {
         this.sc = sc;
@@ -39,7 +43,7 @@ public class Board {
         // Bishops
         pieces[count++] = new Bishop(0, 2, 0);
         pieces[count++] = new Bishop(0, 5, 0);
-        
+
         pieces[count++] = new Bishop(1, 2, 7);
         pieces[count++] = new Bishop(1, 5, 7);
 
@@ -136,12 +140,13 @@ public class Board {
         int initY = p.getY();
         int moveCount = -1;
 
-        // TODO: For King
         if (p instanceof Pawn) {
             moveCount = ((Pawn)p).getMoveCount();
         }
-        // System.out.println("Before:");
-        // System.out.println(this);
+
+        if (p instanceof King) {
+            moveCount = ((King)p).getMoveCount();
+        }
 
         for (int i = 0; i < 32; i++) {
             Piece pc = pieces[i];
@@ -178,9 +183,12 @@ public class Board {
         p.setX(initX);
         p.setY(initY);
 
-        // TODO: For King
         if (p instanceof Pawn) {
             ((Pawn)p).setMoveCount(moveCount);
+        }
+
+        if (p instanceof King) {
+            ((King)p).setMoveCount(moveCount);
         }
 
         for (int i = 0; i < 32; i++) {
@@ -189,9 +197,6 @@ public class Board {
                 break;
             }
         }
-
-        // System.out.println("After:");
-        // System.out.println(this);
 
         return res;
     }

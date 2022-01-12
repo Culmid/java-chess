@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class King extends Piece {
 
-    private boolean castled = false;
     private int moveCount = 0;
 
     public King(int c, int x, int y) {
@@ -14,7 +13,6 @@ public class King extends Piece {
     public King(King k) {
         super(k);
 
-        castled = k.getCastled();
         moveCount = k.getMoveCount();
     }
     
@@ -39,7 +37,7 @@ public class King extends Piece {
         }
         
         // TODO: Fix for Interruption / Shorten
-        if (!castled && moveCount == 0) {
+        if (moveCount == 0) {
             // King Side
             boolean flag = true;
             for (int i = 1; i < 3; i++) {
@@ -80,11 +78,11 @@ public class King extends Piece {
         return c == 0 ? "\u2654" : "\u265A";
     }
 
-    public boolean getCastled() {
-        return castled;
-    }
-
     public int getMoveCount() {
         return moveCount;
+    }
+
+    public void setMoveCount(int moveCount) {
+        this.moveCount = moveCount;
     }
 }
