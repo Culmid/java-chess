@@ -11,9 +11,9 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Board brd = new Board();
         int player = 0;
         Scanner sc = new Scanner(System.in);
+        Board brd = new Board(sc);
         State s = State.PLAYING;
 
         while (s == State.PLAYING) {
@@ -35,6 +35,8 @@ public class App {
             System.out.println(player == 0 ? "W Turn": "B Turn");
 
             while (true) {
+                while (!sc.hasNextLine()){}
+
                 String input = sc.nextLine();
                 System.out.println(input);
 
@@ -118,6 +120,7 @@ public class App {
     }
 
     private static String[] legalMovesToSR(ArrayList<Integer> lm) {
+        System.out.println(lm);
         String[] sr = new String[lm.size() / 2]; // Assume Even
 
         for (int i = 0; i < lm.size(); i += 2) {

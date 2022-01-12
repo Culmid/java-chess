@@ -8,9 +8,12 @@ import java.util.Scanner;
 
 public class Board {
     private Piece[] pieces = new Piece[32];
+    private Scanner sc;
 
     // TODO: Add Board Flip -> Display Upside Down?
-    public Board() {
+    public Board(Scanner sc) {
+        this.sc = sc;
+
         // Pawns
         for (int i = 0; i < 8; i++) {
             pieces[i] = new Pawn(0, i, 1);
@@ -103,6 +106,14 @@ public class Board {
         return false;
     }
 
+    public void replacePiece(Piece orig, Piece newP) {
+        for (int i = 0; i < 32; i++) {
+            if (pieces[i] != null && pieces[i].equals(orig)) {
+                pieces[i] = newP;
+            }
+        }
+    }
+
     public boolean inCheck(int c) {
         for (int i = 0; i < 32; i++) {
             if (pieces[i] != null && pieces[i] instanceof King && pieces[i].getC() == c) {
@@ -123,6 +134,12 @@ public class Board {
         Piece[] temp = new Piece[32]; // Temporary Save of Board State
         int initX = p.getX();
         int initY = p.getY();
+        int moveCount = -1;
+
+        // TODO: For King
+        if (p instanceof Pawn) {
+            moveCount = ((Pawn)p).getMoveCount();
+        }
         // System.out.println("Before:");
         // System.out.println(this);
 
@@ -147,8 +164,12 @@ public class Board {
                 }
             }
         }
+        if (p instanceof Pawn) {
+            ((Pawn)p).makeMove(this, x, y, false);
+        } else {
+            p.makeMove(this, x, y);
+        }
 
-        p.makeMove(this, x, y);
         boolean res = inCheck(p.getC());
 
         pieces = temp; // Restore State
@@ -156,6 +177,12 @@ public class Board {
         // Keep Reference Object (Dirty)
         p.setX(initX);
         p.setY(initY);
+
+        // TODO: For King
+        if (p instanceof Pawn) {
+            ((Pawn)p).setMoveCount(moveCount);
+        }
+
         for (int i = 0; i < 32; i++) {
             if (p.equals(pieces[i])) {
                 pieces[i] = p;
@@ -250,5 +277,9 @@ public class Board {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public Scanner getScanner() {
+        return sc;
     }
 }

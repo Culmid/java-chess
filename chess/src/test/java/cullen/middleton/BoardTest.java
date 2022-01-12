@@ -2,6 +2,8 @@ package cullen.middleton;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.Test;
 
 public class BoardTest {
@@ -9,7 +11,8 @@ public class BoardTest {
     @Test
     public void basicToStringTest()
     {
-        Board brd = new Board();
+        Scanner sc = new Scanner(System.in);
+        Board brd = new Board(sc);
         String expected = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n" +
                           "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n" +
                           "* * * * * * * *\n" +
