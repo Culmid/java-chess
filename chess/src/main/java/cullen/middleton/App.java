@@ -19,6 +19,15 @@ public class App {
         while (s == State.PLAYING) {
             System.out.println(brd);
 
+            int c = brd.inCheckStaleMate(player);
+            if (c == 1) {
+                System.out.println((player + 1) % 2 == 0 ? "W" : "B" + " Wins (Checkmate)");
+                break;
+            } else if (c == 0) {
+                System.out.println("Draw (Stalemate)");
+                break;
+            }
+
             if (brd.inCheck(player)) {
                 System.out.println("CHECK -> Watch Out! Your King is Under Attack!");
             }

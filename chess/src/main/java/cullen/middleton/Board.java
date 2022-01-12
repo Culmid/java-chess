@@ -169,6 +169,16 @@ public class Board {
         return res;
     }
 
+    public int inCheckStaleMate(int c) {
+        for (int i = 0; i < 32; i++) {
+            if (pieces[i] != null && pieces[i].getC() == c && pieces[i].legalMoves(this, true).size() > 0) {
+                return -1; // Neither
+            }
+        }
+
+        return inCheck(c) ? 1 : 0; // Checkmate : Stalemate
+    }
+
     public void exportBoard(String filename) {
         try {
             FileWriter fw = new FileWriter(filename);
