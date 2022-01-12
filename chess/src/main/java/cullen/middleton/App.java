@@ -48,7 +48,7 @@ public class App {
                                 if (p == null) {
                                     System.out.println("No Valid Piece Found");
                                 } else {
-                                    System.out.println("Moves for " + p + " (" + spl[1] + "): " + Arrays.toString(legalMovesToSR(p.legalMoves(brd))));
+                                    System.out.println("Moves for " + p + " (" + spl[1] + "): " + Arrays.toString(legalMovesToSR(p.legalMoves(brd, true))));
                                 }
                             } else {
                                 System.out.println("Invalid Square Reference Value");
@@ -75,7 +75,7 @@ public class App {
                                 if (p == null || p.getC() != player) {
                                     System.out.println("No Valid Piece Found at Starting Point");
                                 } else {
-                                    if (p.isLegalMove(brd, tr1[0], tr1[1])) {
+                                    if (p.isLegalMove(brd, tr1[0], tr1[1], true)) {
                                         p.makeMove(brd, tr1[0], tr1[1]);
                                         break;
                                     } else {

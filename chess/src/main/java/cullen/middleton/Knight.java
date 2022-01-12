@@ -7,8 +7,12 @@ public class Knight extends Piece {
     public Knight(int c, int x, int y) {
         super(c, x, y);
     }
+
+    public Knight(Knight k) {
+        super(k);
+    }
     
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
         int[][] changes = {{1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}};

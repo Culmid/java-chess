@@ -9,8 +9,14 @@ public class Pawn extends Piece {
     public Pawn(int c, int x, int y) {
         super(c, x, y);
     }
+
+    public Pawn(Pawn p) {
+        super(p);
+
+        moveCount = p.getMoveCount();
+    }
     
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
         int poty = c == 0 ? y + 1 : y - 1;
 

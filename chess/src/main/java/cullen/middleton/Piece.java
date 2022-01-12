@@ -12,7 +12,13 @@ public abstract class Piece {
         this.c = c;
     }
 
-    abstract ArrayList<Integer> legalMoves(Board brd);
+    public Piece(Piece p) {
+        x = p.getX();
+        y = p.getY();
+        c = p.getC();
+    }
+
+    abstract ArrayList<Integer> legalMoves(Board brd, boolean testCheck);
 
     public void makeMove(Board brd, int x, int y) {
         if (brd.getPiece(x, y) != null) { // Assume Correct Colour for Capture
@@ -23,8 +29,8 @@ public abstract class Piece {
         this.y = y;
     }
 
-    public boolean isLegalMove(Board brd, int x, int y) {
-        ArrayList<Integer> lm = legalMoves(brd);
+    public boolean isLegalMove(Board brd, int x, int y, boolean testCheck) {
+        ArrayList<Integer> lm = legalMoves(brd, testCheck);
 
         for (int i = 0; i < lm.size(); i += 2) {
             if (x == lm.get(i) && y == lm.get(i + 1)) {
@@ -47,5 +53,29 @@ public abstract class Piece {
         return c;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public abstract String toString();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+
+        if (!(o instanceof Piece)) {
+            return false;
+        }
+
+        Piece p = (Piece) o;
+
+        return x == p.getX() && y == p.getY() && c == p.getC();
+    }
 }

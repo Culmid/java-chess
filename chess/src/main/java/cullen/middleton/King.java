@@ -10,8 +10,15 @@ public class King extends Piece {
     public King(int c, int x, int y) {
         super(c, x, y);
     }
+
+    public King(King k) {
+        super(k);
+
+        castled = k.getCastled();
+        moveCount = k.getMoveCount();
+    }
     
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
         int[][] changes = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
@@ -66,5 +73,13 @@ public class King extends Piece {
 
     public String toString() {
         return c == 0 ? "\u2654" : "\u265A";
+    }
+
+    public boolean getCastled() {
+        return castled;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
     }
 }

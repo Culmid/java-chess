@@ -7,9 +7,13 @@ public class Queen extends Piece {
     public Queen(int c, int x, int y) {
         super(c, x, y);
     }
+
+    public Queen(Queen q) {
+        super(q);
+    }
     
     // TODO: Figure Out How to Share - Rook/Bishop
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Up-Right Diag

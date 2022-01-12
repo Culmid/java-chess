@@ -8,7 +8,11 @@ public class Rook extends Piece {
         super(c, x, y);
     }
     
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public Rook(Rook r) {
+        super(r);
+    }
+
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Up

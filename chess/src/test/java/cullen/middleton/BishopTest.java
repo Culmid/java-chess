@@ -17,7 +17,7 @@ public class BishopTest {
     
     assertNotNull(b);
     assertTrue(b instanceof Bishop);
-    assertEquals(Arrays.toString(expected), b.legalMoves(brd).toString());
+    assertEquals(Arrays.toString(expected), b.legalMoves(brd, true).toString());
   }
 
   @Test
@@ -28,7 +28,7 @@ public class BishopTest {
 
     assertNotNull(b);
     assertTrue(b instanceof Bishop);
-    assertEquals(Arrays.toString(expected), b.legalMoves(brd).toString());
+    assertEquals(Arrays.toString(expected), b.legalMoves(brd, true).toString());
   }
 
   @Test
@@ -38,7 +38,7 @@ public class BishopTest {
     int[] expected = {6, 1, 5, 2, 4, 3, 3, 4, 2, 5, 1, 6, 0, 7};
     assertNotNull(b);
     assertTrue(b instanceof Bishop);
-    assertEquals(Arrays.toString(expected), b.legalMoves(brd).toString());
+    assertEquals(Arrays.toString(expected), b.legalMoves(brd, true).toString());
   }
 
   @Test
@@ -49,7 +49,7 @@ public class BishopTest {
 
     assertNotNull(b);
     assertTrue(b instanceof Bishop);
-    assertEquals(Arrays.toString(expected), b.legalMoves(brd).toString());
+    assertEquals(Arrays.toString(expected), b.legalMoves(brd, true).toString());
   }
 
   @Test
@@ -60,6 +60,6 @@ public class BishopTest {
 
     assertNotNull(b);
     assertTrue(b instanceof Bishop);
-    assertEquals(Arrays.toString(expected), b.legalMoves(brd).toString());
+    assertEquals(Arrays.toString(expected), b.legalMoves(brd, true).toString());
   }
 }

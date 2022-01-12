@@ -7,8 +7,12 @@ public class Bishop extends Piece {
     public Bishop(int c, int x, int y) {
         super(c, x, y);
     }
+
+    public Bishop(Bishop b) {
+        super(b);
+    }
     
-    public ArrayList<Integer> legalMoves(Board brd) {
+    public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
         // Top-Right Diag
@@ -85,6 +89,19 @@ public class Bishop extends Piece {
             if (p != null) {
                 break;
             }
+        }
+
+        if (testCheck) {
+            ArrayList<Integer> lmNew = new ArrayList<Integer>();
+            for (int i = 0; i < lm.size(); i += 2) {
+                if (!brd.testMoveCheck(this, lm.get(i), lm.get(i + 1))) {
+                    lmNew.add(lm.get(i));
+                    lmNew.add(lm.get(i + 1));
+                }
+                // System.out.println();
+            }
+
+            lm = lmNew;
         }
 
         return lm;

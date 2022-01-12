@@ -108,7 +108,7 @@ public class Board {
             if (pieces[i] != null && pieces[i] instanceof King && pieces[i].getC() == c) {
                 for (int j = 0; j < 32; j++) {
                     if (pieces[j] != null && pieces[j].getC() != c) {
-                        if (pieces[j].isLegalMove(this, pieces[i].getX(), pieces[i].getY())) {
+                        if (pieces[j].isLegalMove(this, pieces[i].getX(), pieces[i].getY(), false)) {
                             return true;
                         }
                     }
@@ -117,6 +117,56 @@ public class Board {
         }
 
         return false;
+    }
+
+    public boolean testMoveCheck(Piece p, int x, int y) {
+        Piece[] temp = new Piece[32]; // Temporary Save of Board State
+        int initX = p.getX();
+        int initY = p.getY();
+        // System.out.println("Before:");
+        // System.out.println(this);
+
+        for (int i = 0; i < 32; i++) {
+            Piece pc = pieces[i];
+
+            if (pc == null) {
+                temp[i] = null; // Bit Overkill
+            } else {
+                if (pc instanceof Pawn) {
+                    temp[i] = new Pawn((Pawn)pc);
+                } else if (pc instanceof Rook) {
+                    temp[i] = new Rook((Rook)pc);
+                } else if (pc instanceof Knight) {
+                    temp[i] = new Knight((Knight)pc);
+                } else if (pc instanceof Bishop) {
+                    temp[i] = new Bishop((Bishop)pc);
+                } else if (pc instanceof Queen) {
+                    temp[i] = new Queen((Queen)pc);
+                } else {
+                    temp[i] = new King((King)pc);
+                }
+            }
+        }
+
+        p.makeMove(this, x, y);
+        boolean res = inCheck(p.getC());
+
+        pieces = temp; // Restore State
+
+        // Keep Reference Object (Dirty)
+        p.setX(initX);
+        p.setY(initY);
+        for (int i = 0; i < 32; i++) {
+            if (p.equals(pieces[i])) {
+                pieces[i] = p;
+                break;
+            }
+        }
+
+        // System.out.println("After:");
+        // System.out.println(this);
+
+        return res;
     }
 
     public void exportBoard(String filename) {
