@@ -312,4 +312,64 @@ public class BoardTest {
         int[] expected = { 5, 1 };
         assertEquals(Arrays.toString(expected), brd.getPiece(4, 0).legalMoves(brd, true).toString());
     }
+
+    @Test
+    public void stalemateTest1() {
+        Board brd = new Board("data/Board/stalemate1.txt");
+
+        assertEquals(0, brd.inCheckStaleMate(1));
+        assertEquals(-1, brd.inCheckStaleMate(0));
+
+        assertFalse(brd.inCheck(0));
+        assertFalse(brd.inCheck(1));
+        assertTrue(brd.getPiece(4, 7).legalMoves(brd, true).isEmpty());
+    }
+
+    @Test
+    public void stalemateTest2() {
+        Board brd = new Board("data/Board/stalemate2.txt");
+
+        assertEquals(0, brd.inCheckStaleMate(1));
+        assertEquals(-1, brd.inCheckStaleMate(0));
+
+        assertFalse(brd.inCheck(0));
+        assertFalse(brd.inCheck(1));
+        assertTrue(brd.getPiece(0, 7).legalMoves(brd, true).isEmpty());
+    }
+
+    @Test
+    public void stalemateTest3() {
+        Board brd = new Board("data/Board/stalemate3.txt");
+
+        assertEquals(0, brd.inCheckStaleMate(1));
+        assertEquals(-1, brd.inCheckStaleMate(0));
+
+        assertFalse(brd.inCheck(0));
+        assertFalse(brd.inCheck(1));
+        assertTrue(brd.getPiece(7, 7).legalMoves(brd, true).isEmpty());
+    }
+
+    @Test
+    public void stalemateTest4() {
+        Board brd = new Board("data/Board/stalemate4.txt");
+
+        assertEquals(-1, brd.inCheckStaleMate(1));
+        assertEquals(0, brd.inCheckStaleMate(0));
+
+        assertFalse(brd.inCheck(0));
+        assertFalse(brd.inCheck(1));
+        assertTrue(brd.getPiece(7, 7).legalMoves(brd, true).isEmpty());
+    }
+
+    @Test
+    public void stalemateTest5() {
+        Board brd = new Board("data/Board/stalemate5.txt");
+
+        assertEquals(-1, brd.inCheckStaleMate(1));
+        assertEquals(0, brd.inCheckStaleMate(0));
+
+        assertFalse(brd.inCheck(0));
+        assertFalse(brd.inCheck(1));
+        assertTrue(brd.getPiece(7, 3).legalMoves(brd, true).isEmpty());
+    }
 }
