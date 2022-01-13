@@ -2,17 +2,39 @@ package cullen.middleton;
 
 import java.util.ArrayList;
 
+/**
+ * Subclasss of Piece representing the Queen Piece.
+ */
 public class Queen extends Piece {
 
+    /**
+     * Default constructor with three initial values.
+     * 
+     * @param c Colour - 0 = White, 1 = Black.
+     * @param x X Co-ordinate.
+     * @param y Y Co-ordinate.
+     */
     public Queen(int c, int x, int y) {
         super(c, x, y);
     }
 
+    /**
+     * Utility constructor for easy Piece Duplication.
+     * 
+     * @param q Existing Piece to copy attributes from.
+     */
     public Queen(Queen q) {
         super(q);
     }
     
-    // TODO: Figure Out How to Share - Rook/Bishop
+    /**
+     * Function to return a list of legal moves for a Queen.
+     * 
+     * @param brd       Board object containing all Pieces and handling Piece interaction.
+     * @param testCheck Boolean to determine if moving into check is considered.
+     * @return ArrayList of integers which are paired off according to x and y
+     *         values for potential moves.
+     */
     public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
@@ -167,6 +189,9 @@ public class Queen extends Piece {
         return lm;
     }
 
+    /**
+     * Default toString function with unicode for Queens.
+     */
     public String toString() {
         return c == 0 ? "\u2655" : "\u265B";
     }

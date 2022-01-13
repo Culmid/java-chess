@@ -3,20 +3,43 @@ package cullen.middleton;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Subclasss of Piece representing the Pawn Piece.
+ */
 public class Pawn extends Piece {
 
     int moveCount = 0;
 
+    /**
+     * Default constructor with three initial values.
+     * 
+     * @param c Colour - 0 = White, 1 = Black.
+     * @param x X Co-ordinate.
+     * @param y Y Co-ordinate.
+     */
     public Pawn(int c, int x, int y) {
         super(c, x, y);
     }
 
+    /**
+     * Utility constructor for easy Piece Duplication.
+     * 
+     * @param p Existing Piece to copy attributes from.
+     */
     public Pawn(Pawn p) {
         super(p);
 
         moveCount = p.getMoveCount();
     }
     
+    /**
+     * Function to return a list of legal moves for a Pawn.
+     * 
+     * @param brd       Board object containing all Pieces and handling Piece interaction.
+     * @param testCheck Boolean to determine if moving into check is considered.
+     * @return ArrayList of integers which are paired off according to x and y
+     *         values for potential moves.
+     */
     public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
         int poty = c == 0 ? y + 1 : y - 1;
@@ -32,14 +55,14 @@ public class Pawn extends Piece {
 
             for (int i = -1; i < 2; i += 2) {
                 // Normal Capture
-                p = brd.getPiece(x + i, poty); // No Check for x in Bounds
+                p = brd.getPiece(x + i, poty);
                 
                 if (p != null && p.getC() != c) {
                     lm.add(x + i);
                     lm.add(poty);
                 }
 
-                // En Passant - Dodge
+                // En Passant
                 p = brd.getPiece(x + i, y);
 
                 if (p != null && p.getC() != c && p instanceof Pawn && ((Pawn)p).getMoveCount() == 1) {
@@ -48,7 +71,7 @@ public class Pawn extends Piece {
                 }
             }
 
-            // First Move, TODO: Check for something in Between
+            // First Move
             if (moveCount == 0 && brd.getPiece(x, poty) == null) {
                 poty = c == 0 ? y + 2 : y - 2;
                 p = brd.getPiece(x, poty);
@@ -67,15 +90,29 @@ public class Pawn extends Piece {
         return lm;
     }
 
+    /**
+     * Default Pawn specific move making function to allow for En-Passant and Promotion.
+     * 
+     * @param brd Board object containing all Pieces and handling Piece interaction.
+     * @param x   X co-ordinate.
+     * @param y   Y co-ordinate.
+     */
     public void makeMove(Board brd, int x, int y) {
         makeMove(brd, x, y, true);
     }
-
+    
+    /**
+     * awn specific move making function to allow for En-Passant and optional Promotion.
+     * 
+     * @param brd            Board object containing all Pieces and handling Piece interaction.
+     * @param x              X co-ordinate.
+     * @param y              Y co-ordinate.
+     * @param allowPromotion Boolean representing the allowance of promotion.
+     */
     public void makeMove(Board brd, int x, int y, boolean allowPromotion) {
         // En Passant Removal
         if (Math.abs(x - this.x) == 1 && Math.abs(y - this.y) == 1 && brd.getPiece(x, y) == null) {
             brd.removePiece(x, this.y);
-            // System.out.println("Wow...En Passant...Someone Knows Chess ;)");
         }
 
         super.makeMove(brd, x, y);
@@ -119,14 +156,27 @@ public class Pawn extends Piece {
         }
     }
 
+    /**
+     * Default toString function with unicode for Pawns.
+     */
     public String toString() {
         return c == 0 ? "\u2659" : "\u265F"; 
     }
 
+    /**
+     * Default getter for moveCount.
+     * 
+     * @return moveCount.
+     */
     public int getMoveCount() {
         return moveCount;
     }
 
+    /**
+     * Default setter for moveCount.
+     * 
+     * @param moveCount Updated moveCount.
+     */
     public void setMoveCount(int moveCount) {
         this.moveCount = moveCount;
     }

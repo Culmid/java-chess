@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Main App for this chess game, showing how components should be used. 
+ */
 public class App {
     enum State {
         PLAYING,
         END
     }
 
+    /**
+     * Main function controlling the cycle of player interaction and other game aspects.
+     * @param args Command Line Input - Not Used.
+     */
     public static void main(String[] args) {
         int player = 0;
         Scanner sc = new Scanner(System.in);
@@ -38,7 +45,6 @@ public class App {
                 while (!sc.hasNextLine()){}
 
                 String input = sc.nextLine();
-                System.out.println(input);
 
                 if (input.equals("/resign") || input.equals("/r")) {
                     // Resign
@@ -48,7 +54,7 @@ public class App {
                 } else if (input.startsWith("/help") || input.startsWith("/h")){
                     // Find Moves for Piece
                     String[] spl = input.split(" ");
-                    System.out.println(Arrays.toString(spl));
+
                     if (spl.length == 2) {
                         if (spl[1].length() == 2) {
                             int[] tr = translateSquareRef(spl[1].toLowerCase());
@@ -73,7 +79,6 @@ public class App {
                 } else {
                     // Move
                     String[] spl = input.split(" ");
-                    System.out.println(Arrays.toString(spl));
 
                     if (spl.length == 2) {
                         if (spl[1].length() == 2) {
@@ -112,6 +117,13 @@ public class App {
         sc.close();
     }
 
+    /**
+     * Function for the translation of Chess Square References to co-ordinate values used
+     * behind the scenes.
+     * 
+     * @param sr Chess Square Reference - Example: e4.
+     * @return  "Tuple"(Actually Array) of translated x and y values for the square reference.
+     */
     private static int[] translateSquareRef(String sr) {
         int x = (int)sr.charAt(0) - 97;
         int y = (int)sr.charAt(1) - 49;
@@ -119,6 +131,12 @@ public class App {
         return new int[] {x, y};
     }
 
+    /**
+     * Function to translate the co-ordinates given by the legalMoves function back into square references.
+     * 
+     * @param lm List of integers returned by the legalMoves function.
+     * @return Array of string square references, representing the legal moves.
+     */
     private static String[] legalMovesToSR(ArrayList<Integer> lm) {
         System.out.println(lm);
         String[] sr = new String[lm.size() / 2]; // Assume Even

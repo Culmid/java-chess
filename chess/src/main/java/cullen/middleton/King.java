@@ -2,20 +2,43 @@ package cullen.middleton;
 
 import java.util.ArrayList;
 
+/**
+ * Subclass of Piece representing the King Piece.
+ */
 public class King extends Piece {
 
     private int moveCount = 0;
 
+    /**
+     * Default constructor with three initial values.
+     * 
+     * @param c Colour - 0 = White, 1 = Black.
+     * @param x X Co-ordinate.
+     * @param y Y Co-ordinate.
+     */
     public King(int c, int x, int y) {
         super(c, x, y);
     }
 
+    /**
+     * Utility constructor for easy Piece Duplication.
+     * 
+     * @param k Existing Piece to copy attributes from.
+     */
     public King(King k) {
         super(k);
 
         moveCount = k.getMoveCount();
     }
     
+    /**
+     * Function to return a list of legal moves for a King.
+     * 
+     * @param brd       Board object containing all Pieces and handling Piece interaction.
+     * @param testCheck Boolean to determine if moving into check is considered.
+     * @return ArrayList of integers which are paired off according to x and y
+     *         values for potential moves.
+     */
     public ArrayList<Integer> legalMoves(Board brd, boolean testCheck) {
         ArrayList<Integer> lm = new ArrayList<Integer>();
 
@@ -34,8 +57,7 @@ public class King extends Piece {
                 }
             }
         }
-        
-        // TODO: Fix for Interruption / Shorten
+
         if (moveCount == 0) {
             // King Side
             boolean flag = true;
@@ -73,6 +95,13 @@ public class King extends Piece {
         return lm;
     }
 
+    /**
+     * King specific move making function to allow for castling and King state.
+     * 
+     * @param brd Board object containing all Pieces and handling Piece interaction.
+     * @param x X co-ordinate.
+     * @param y Y co-ordinate.
+     */
     public void makeMove(Board brd, int x, int y) {
         // Castling - Assume Legal and Rook in Place
         if (x - this.x == 2) { // King Side
@@ -86,14 +115,27 @@ public class King extends Piece {
         moveCount++;
     }
 
+    /**
+     * Default toString function with unicode for Kings.
+     */
     public String toString() {
         return c == 0 ? "\u2654" : "\u265A";
     }
 
+    /**
+     * Default getter for moveCount.
+     * 
+     * @return moveCount.
+     */
     public int getMoveCount() {
         return moveCount;
     }
 
+    /**
+     * Default setter for moveCount.
+     * 
+     * @param moveCount Updated moveCount.
+     */
     public void setMoveCount(int moveCount) {
         this.moveCount = moveCount;
     }
